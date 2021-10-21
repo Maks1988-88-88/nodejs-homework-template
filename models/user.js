@@ -19,6 +19,11 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
+    subscription: {
+      type: String,
+      enum: ["starter", "pro", "business"],
+      default: "starter",
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -43,6 +48,7 @@ userSchema.methods.createToken = function () {
 const joiSchema = Joi.object({
   email: Joi.string().required(),
   password: Joi.string().min(6).required(),
+  subscription: Joi.string().valid("starter", "pro", "business"),
 });
 
 const User = model("user", userSchema);

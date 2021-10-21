@@ -7,7 +7,6 @@ const {
   authenticate,
 } = require("../../middlewares");
 
-// const { auth: ctrl } = require('../../controllers/auth');
 const ctrl = require("../../controllers/auth");
 
 const router = express.Router();
@@ -20,5 +19,8 @@ router.post("/signin", validation(joiSchema), controllerWrapper(ctrl.signin));
 
 router.get("/signout",authenticate, controllerWrapper(ctrl.signout));
 // logout
+
+router.get("/current", authenticate, controllerWrapper(ctrl.getCurrentUser));
+
 
 module.exports = router;

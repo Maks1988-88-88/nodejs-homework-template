@@ -11,25 +11,29 @@ const contactSchema = Schema(
     name: {
       type: String,
       required: [true, "Set name for contact"],
-    //   minlenght: 2,
-    //   maxlenght: 30,
+      //   minlenght: 2,
+      //   maxlenght: 30,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-    //   match: emailRegExp,
-    //   minlenght: 7,
+      //   match: emailRegExp,
+      //   minlenght: 7,
     },
     phone: {
       type: String,
       required: true,
       unique: true,
-    //   match: phoneRegExp,
+      //   match: phoneRegExp,
     },
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   { versionKey: false, timestamps: true }

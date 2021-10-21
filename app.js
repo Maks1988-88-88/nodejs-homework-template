@@ -17,7 +17,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/contacts", contactsRouter);
-
 app.use("/api/users", authRouter);
 // app.use("/api/users", authRouter);
 
@@ -30,5 +29,8 @@ app.use((err, req, res, next) => {
   // res.status(500).json({ message: err.message })
   res.status(status).json({ message });
 });
+
+
+
 
 module.exports = app;
