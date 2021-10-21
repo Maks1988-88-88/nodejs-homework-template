@@ -1,6 +1,10 @@
 const { BadRequest,NotFound } = require("http-errors");
 const bcrypt = require("bcryptjs");
+// const jwt = require('jsonwebtoken');
+
 const { User } = require("../../models");
+
+const {SECRET_KEY} = process.env;
 
 const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -20,7 +24,14 @@ const signin = async (req, res) => {
     //   // });
     // }
 
-    const token = 'dasdas.fasfas.dsasdaddas';
+  // const payload = {
+  //   _id: user._id
+  // }
+  //   const token = jwt.sign(payload, "SECRET_KEY");
+
+    const { _id } = user;
+    const token = user.createToken();
+    await User.findByIdAndUpdate(_id, { token });
     res.json({
       status: 'success',
       code: 200,
@@ -28,6 +39,8 @@ const signin = async (req, res) => {
         token
       }
     })
+
+
 };
 
 module.exports = signin;
