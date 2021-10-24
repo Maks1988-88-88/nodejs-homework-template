@@ -1,9 +1,13 @@
 const { User } = require("../../models");
 const { Conflict } = require("http-errors");
 const bcrypt = require("bcryptjs");
+const gravatar = require("gravatar");
+
 
 const signup = async (req, res) => {
   const { email, password } = req.body;
+  const avatarURL = gravatar.url(email, { protocol: "https", s: 250 });
+
   const user = await User.findOne({ email });
   // console.log(user);
   if (user) {
@@ -14,7 +18,7 @@ const signup = async (req, res) => {
     //     message: "Already register"
     // });
   }
-  const newUser = new User({ email });
+  const newUser = new User({ email, avatarURL });
   newUser.setPassword(password);
   await newUser.save();
 
@@ -29,8 +33,8 @@ const signup = async (req, res) => {
   });
 };
 
-const signin = async (req, res) => {};
+// const signin = async (req, res) => {};
 
-const signout = async (req, res) => {};
+// const signout = async (req, res) => {};
 
 module.exports = signup;
