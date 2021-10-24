@@ -9,16 +9,6 @@ const getCurrentUser = async (req, res) => {
     { user: { _id, email, subscription }, contacts, message: "Success" },
     200
   );
-
-  //   res.json({
-  //     status: "success",
-  //     code: 200,
-  //     data: {
-  //       contacts,
-  //       email,
-  //       subscription,
-  //     },
-  //   });
 };
 
 module.exports = getCurrentUser;

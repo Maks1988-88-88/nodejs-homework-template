@@ -1,13 +1,9 @@
 const fs = require("fs/promises");
 const path = require("path");
 const { User } = require("../../models");
-// const sendSuccessRes = require("../../helpers/sendSuccessRes");
 const { sendSuccessRes, imageResize } = require("../../helpers/index");
 
 
-// ====
-// const imageResize = require("../../helpers/imageResize");
-// ====
 
 const addUserAvatar = async (req, res) => {
   const { _id, email, subscription } = req.user;
